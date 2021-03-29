@@ -1,4 +1,7 @@
-import { v4 as uuid} from "uuid";
+import { v4 as uuid } from "uuid";
+import AWS from "aws-sdk";
+
+const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 async function createAuction(event, context) {
   const { title } = JSON.parse(event.body);
@@ -11,7 +14,12 @@ async function createAuction(event, context) {
     createdAt: now.toISOString(),
   };
 
-  //AuctionsTable
+  await dynamoDB
+    .put({
+      TableName: "AuctionsTable",
+      Item: auction,
+    })
+    .promise();
 
   return {
     statusCode: 201,
