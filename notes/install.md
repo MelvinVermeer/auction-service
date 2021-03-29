@@ -24,3 +24,10 @@ AWS Secret Access Key [None]: VJZ*****iv9
 Default region name [None]: eu-west-1
 Default output format [None]: yaml
 ```
+
+### Deploying / Remove 
+
+```
+sls deploy
+sls remove
+```
