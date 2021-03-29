@@ -31,3 +31,9 @@ Default output format [None]: yaml
 sls deploy
 sls remove
 ```
+
+#### Deploying a single function
+
+```
+sls deploy -f createAuction -v
+```
