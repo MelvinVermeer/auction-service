@@ -13,9 +13,11 @@ provider:
   region: eu-west-1
   environment:
     AUCTIONS_TABLE_NAME: ${self:custom.AuctionsTable.name}
+    MAILQUEUE_URL: ${self:custom.mailQueue.url}
   iamRoleStatements:
     - ${file(iam/AuctionsTableIAM.yml):AuctionsTableIAM}
     - ${file(iam/SendMailIAM.yml):SendMailIAM}
+    - ${file(iam/MailQueueIAM.yml):MailQueueIAM}
 
 resources:
   Resources:
@@ -76,3 +78,4 @@ custom:
   mailQueue:
     name: MailQueue-${self:provider.stage}
     arn: !GetAtt MailQueue.Arn
+    url: !Ref MailQueue
