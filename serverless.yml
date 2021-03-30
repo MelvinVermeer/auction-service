@@ -20,6 +20,7 @@ provider:
 resources:
   Resources:
     AuctionsTable: ${file(resources/AuctionsTable.yml):AuctionsTable}
+    MailQueue: ${file(resources/MailQueue.yml):MailQueue}
 
 functions:
   createAuction:
@@ -53,10 +54,14 @@ functions:
           method: PATCH
           path: /auction/{id}/bid
           authorizer: ${self:custom.authorizer}
-    
+
   sendMail:
+    events:
+      - sqs:
+          arn: ${self:custom.mailQueue.arn}
+          batchSize: 1
     handler: src/handlers/sendMail.handler
-    
+
   processAuctions:
     handler: src/handlers/processAuctions.handler
     # events:
@@ -68,3 +73,6 @@ custom:
   AuctionsTable:
     name: !Ref AuctionsTable
     arn: !GetAtt AuctionsTable.Arn
+  mailQueue:
+    name: MailQueue-${self:provider.stage}
+    arn: !GetAtt MailQueue.Arn
