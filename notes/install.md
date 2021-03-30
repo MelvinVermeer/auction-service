@@ -25,7 +25,7 @@ Default region name [None]: eu-west-1
 Default output format [None]: yaml
 ```
 
-### Deploying / Remove 
+### Deploying / Remove
 
 ```
 sls deploy
@@ -36,4 +36,10 @@ sls remove
 
 ```
 sls deploy -f createAuction -v
+```
+
+### Invoke scheduled function
+
+```
+sls invoke -f processAuctions -l
 ```
