@@ -6,7 +6,7 @@ import commonMiddleware from "../lib/commonMiddleware";
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 async function createAuction(event) {
-  const { title } = JSON.parse(event.body);
+  const { title } = event.body;
   const now = new Date();
 
   const auction = {
