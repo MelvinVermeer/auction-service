@@ -1,16 +1,13 @@
 module.exports = {
-  extends: "@serverless/eslint-config/node",
+  extends: ["airbnb-base", "plugin:prettier/recommended"],
+  plugins: ["prettier"],
   root: true,
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module",
   },
   rules: {
+    "prettier/prettier": "error",
     "import/prefer-default-export": "off",
-    "no-dupe-else-if": "off",
-    "no-import-assign": "off",
-    "no-setter-return": "off",
-    "quotes": ["error", "double"],
     "no-console": "off",
   },
 };
