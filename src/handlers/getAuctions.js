@@ -7,7 +7,7 @@ import createError from "http-errors";
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
-async function getAuctions(event, context) {
+async function getAuctions() {
   try {
     const { Items } = await dynamoDB
       .scan({ TableName: process.env.AUCTIONS_TABLE_NAME })
@@ -18,7 +18,6 @@ async function getAuctions(event, context) {
       body: JSON.stringify(Items),
     };
   } catch (error) {
-    console.error(error);
     throw new createError.InternalServerError(error);
   }
 }
