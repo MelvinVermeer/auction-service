@@ -4,13 +4,13 @@ import commonMiddleware from "../lib/commonMiddleware";
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
-async function getAuctions() {
+async function getAuctions(event) {
   const params = {
     TableName: process.env.AUCTIONS_TABLE_NAME,
     IndexName: "statusAndEndDate",
     KeyConditionExpression: "#status = :status",
     ExpressionAttributeValues: {
-      ":status": "OPEN",
+      ":status": event.queryStringParameters.status,
     },
     ExpressionAttributeNames: {
       "#status": "status",
