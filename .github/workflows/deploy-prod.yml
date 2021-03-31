@@ -1,9 +1,8 @@
-name: Deploy main branch to dev
+name: Deploy main branch to prod
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 jobs:
   deploy:
@@ -22,7 +21,7 @@ jobs:
       - name: serverless deploy
         uses: serverless/github-action@master
         with:
-          args: deploy --verbose
+          args: deploy --stage prod --verbose
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
