@@ -19,7 +19,7 @@ async function getAuctions(event) {
     },
   };
 
-  console.log("deployed using gh action");
+  console.log("deployed using gh action.");
 
   try {
     const { Items } = await dynamoDB.query(params).promise();
