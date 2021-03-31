@@ -4,7 +4,7 @@ import createError from "http-errors";
 import validator from "@middy/validator";
 import cors from "@middy/http-cors";
 import { uploadPictureToS3 } from "../lib/uploadPictureToS3";
-import { getAuctionById } from "./getAuction";
+import { getAuctionById } from "../lib/getAuctionById";
 import { setAuctionPicturUrl } from "../lib/setAuctionPictureUrl";
 import schema from "../lib/schemas/auctionPictureSchema";
 
