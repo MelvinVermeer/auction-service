@@ -1,6 +1,6 @@
 module.exports = {
   extends: ["airbnb-base", "plugin:prettier/recommended"],
-  plugins: ["prettier"],
+  plugins: ["prettier", "jest"],
   root: true,
   parserOptions: {
     ecmaVersion: 2018,
@@ -9,5 +9,8 @@ module.exports = {
     "prettier/prettier": "error",
     "import/prefer-default-export": "off",
     "no-console": "off",
+  },
+  env: {
+    "jest/globals": true,
   },
 };
